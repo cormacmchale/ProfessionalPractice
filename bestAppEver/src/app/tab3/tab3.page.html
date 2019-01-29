@@ -1,9 +1,58 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Three
+      BestAppEver
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+
+  <ion-item>
+    <ion-label>From</ion-label>
+    <ion-select placeholder="From...">
+      <ion-select-option value="d">Dublin</ion-select-option>
+      <ion-select-option value="g">Galway</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+      <ion-label>To</ion-label>
+      <ion-select placeholder="To...">
+        <ion-select-option value="d">Dublin</ion-select-option>
+        <ion-select-option value="g">Galway</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+        <ion-select placeholder="Departure at">
+          <ion-select-option value="d">Departure at</ion-select-option>
+          <ion-select-option value="a">Arrival at</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+          <ion-label>Date</ion-label>
+          <ion-datetime display-format="MM/DD/YYYY" picker-format="MM/DD/YYYY"></ion-datetime>
+        </ion-item>
+     
+      <ion-item>
+          <ion-label>Seats</ion-label>
+          <ion-select placeholder="1">
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        
+        <ion-item>
+            <ion-label>Price</ion-label>
+            <ion-input type="number" placeholder="0,00"></ion-input>
+          </ion-item>
+
+          <ion-button color="primary" expand="full">Create Offer</ion-button>
+
+</ion-content>
