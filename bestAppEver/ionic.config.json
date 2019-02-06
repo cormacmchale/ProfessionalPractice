@@ -1,7 +1,0 @@
-{
-  "name": "bestAppEver",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}
