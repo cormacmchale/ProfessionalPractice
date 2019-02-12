@@ -1,61 +1,51 @@
-import { Component, ViewChild, OnInit } from "@angular/core";
-import {
-  GoogleMaps,
-  GoogleMap,
-  GoogleMapsEvent,
-  LatLng,
-  MarkerOptions,
-  Marker,
-  Environment
-} from "@ionic-native/google-maps/ngx";
-
-import { Platform, NavController } from "@ionic/angular";
+import { Component, OnInit } from '@angular/core';
+import { Platform } from '@ionic/angular';
+import { GoogleMaps, GoogleMap, Environment, GoogleMapOptions, GoogleMapsEvent, Marker } from "@ionic-native/google-maps/ngx";
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
- map:GoogleMap;
-  @ViewChild('map') element;
+export class HomePage implements OnInit{
+  map: GoogleMap;
+  constructor(private platform: Platform){
 
-  constructor(public googleMaps: GoogleMaps, public plt: Platform,  public nav: NavController) { }
-  
-  
-  async ngOnInit() {
-   await  this.plt.ready();
-     await  this.loadMap();
-   
-  } 
-  loadMap() {
+  }
+
+  async ngOnInit(){
+    await this.platform.ready();
+    await this.loadMap();
+  }
+
+  loadMap(){
 
     Environment.setEnv({
       'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyDQUaBvR0ZXMXsn-sPP6qhPw-qGFYmsTMs',
-        'API_KEY_FOR_BROWSER_DEBUG': ''
-      });
-    let map: GoogleMap = GoogleMaps.create('map_canvas');
+      'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyDQUaBvR0ZXMXsn-sPP6qhPw-qGFYmsTMs'
+    });
 
-    // map.one(GoogleMapsEvent.MAP_READY).then((data: any) => {
+    let mapOptions: GoogleMapOptions = {
+      camera: {
+         target: {
+           lat: 53.270962,
+           lng: -9.062691
+         },
+         zoom: 18,
+         tilt: 30
+       }
+    };
+    this.map = GoogleMaps.create('map_canvas', mapOptions);
 
-    //   let coordinates: LatLng = new LatLng(33.6396965, -84.4304574);
-
-    //   let position = {
-    //     target: coordinates,
-    //     zoom: 17
-    //   };
-
-    //   map.animateCamera(position);
-
-    //   let markerOptions: MarkerOptions = {
-    //     position: coordinates,
-    //     icon: "assets/images/icons8-Marker-64.png",
-    //     title: 'Our first POI'
-    //   };
-
-    //   const marker = map.addMarker(markerOptions)
-    //     .then((marker: Marker) => {
-    //       marker.showInfoWindow();
-    //   });
-    // })
+    let marker: Marker = this.map.addMarkerSync({
+      title: 'Galway',
+      snippet: 'teste',
+      position: {
+        lat: 53.270962,
+        lng: -9.062691
+      }
+    });
+    marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+      alert('clicked');
+    });
+   }
   }
-}
